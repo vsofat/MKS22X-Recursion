@@ -1,4 +1,5 @@
 public class recursion{
+
   public static void main(String[] args) {
     // Sqrt
     System.out.println("16: " + sqrt(16, .001) + "; " + sqrt(16) + "; "+ Math.sqrt(16));
@@ -51,6 +52,11 @@ public class recursion{
     if (n == 2){
       return previous+previouser;}
     return fibLinear(num-1, previous+previouser, previous);
+  }
+
+  public static ArrayList<Integer> makeAllSums(int n){
+  ArrayList<Integer> sums = new ArrayList<Integer>();
+  return AllSums(); //need to determine params
   }
 
   }
