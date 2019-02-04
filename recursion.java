@@ -58,7 +58,7 @@ public class recursion{
 
   public static ArrayList<Integer> makeAllSums(int nums){
   ArrayList<Integer> sums = new ArrayList<Integer>();
-  return allSums(); //need to determine params
+  return allSums(nums,0,sums); //need to determine params
   }
 
   public static void allSums(int nums, int current, ArrayList<Integer> all) {
@@ -68,7 +68,6 @@ public class recursion{
   }
   allSums(n - 1, current + n, all);
   allSums(n - 1, current, all);
-  return all;
   }
 
   }
