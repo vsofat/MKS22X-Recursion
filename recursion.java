@@ -1,4 +1,20 @@
 public class recursion{
+  public static void main(String[] args) {
+    // Sqrt
+    System.out.println("16: " + sqrt(16, .001) + "; " + sqrt(16) + "; "+ Math.sqrt(16));
+    System.out.println("100: " + sqrt(100, .001) + "; " + sqrt(100) + "; " + Math.sqrt(100));
+    System.out.println("1: " + sqrt(1, .001) + "; " + sqrt(1) + "; " + Math.sqrt(1));
+    System.out.println(".5: " + sqrt(.5, .001) + "; " + sqrt(.5) + "; " + Math.sqrt(.5));
+    System.out.println("): " + sqrt(0, .001) + "; " + sqrt(0) + "; " + Math.sqrt(0));
+
+    // Fib
+    System.out.println("Fib 0: " + fib(0));
+    System.out.println("Fib 1: " + fib(1));
+    System.out.println("Fib 5: " + fib(3));
+    System.out.println("Fib 7: " + fib(5));
+    System.out.println("Fib 40: " + fib(40));
+    System.out.println("Fib 51: " + fib(51));
+  }
 
   public static double sqrt(double num, double threshold){
     if (num == 0){
@@ -36,6 +52,5 @@ public class recursion{
       return previous+previouser;}
     return fibLinear(num-1, previous+previouser, previous);
   }
-
 
   }
