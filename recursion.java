@@ -22,10 +22,19 @@ public class recursion{
     return squareRoot(num,guess,threshold);}}
 
   public static int fib(int num){
+    if (num < 0){
+      throw new IllegalArgumentException("Num entered must be positive."); // this is a precondition
+    }
     if (num < 2){
       return 1;
     }
     return fibLinear(num, 1, 1);
+  }
+
+  public static int fibLinear(int num, int previous, int previouser){
+    if (n == 2){
+      return previous+previouser;}
+    return fibLinear(num-1, previous+previouser, previous);
   }
 
 
