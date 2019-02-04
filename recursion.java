@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class recursion{
 
   public static void main(String[] args) {
@@ -54,9 +56,19 @@ public class recursion{
     return fibLinear(num-1, previous+previouser, previous);
   }
 
-  public static ArrayList<Integer> makeAllSums(int n){
+  public static ArrayList<Integer> makeAllSums(int nums){
   ArrayList<Integer> sums = new ArrayList<Integer>();
-  return AllSums(); //need to determine params
+  return allSums(); //need to determine params
+  }
+
+  public static void allSums(int nums, int current, ArrayList<Integer> all) {
+  if (n <= 0) {
+    all.add(current);
+    return all;
+  }
+  allSums(n - 1, current + n, all);
+  allSums(n - 1, current, all);
+  return all;
   }
 
   }
