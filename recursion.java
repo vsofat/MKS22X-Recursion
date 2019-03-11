@@ -6,7 +6,7 @@ public class recursion{
     // DRIVER -- MR.K
     for (int index = 0; index < 6; index++){
       testFib(index);
-      testSqrt(index);
+      //testSqrt(index);
     }
     /*
     // Sqrt
@@ -24,6 +24,15 @@ public class recursion{
     System.out.println("Fib 40: " + fib(40));
     System.out.println("Fib 51: " + fib(51));
     */
+
+    //sums
+    System.out.println("Testing how the makeAllSums methods works!") ;
+    System.out.println("makeAllSums(1) should return: [0,1]") ;
+    System.out.println(makeAllSums(1)) ;
+    System.out.println("makeAllSums(2) should return: [0,1,2,3]") ;
+    System.out.println(makeAllSums(2)) ;
+    System.out.println("makeAllSums(3) should return: [0,1,2,3,3,4,5,6]") ;
+    System.out.println(makeAllSums(3)) ;
   }
 
   //testcase must be a valid index of your input/output array
@@ -57,6 +66,12 @@ public class recursion{
     }
   }
 
+  public static boolean closeEnough(double a, double b){ //from mailing list
+    if(a==0.0 && b==0.0)return true;
+    if(a==0.0)return b < 0.00000000001;
+    if(b==0.0)return a < 0.00000000001;
+    return Math.abs(a-b)/a < 0.0001;//This is the normal % difference allowed
+  }
 
   //testcase must be a valid index of your input/output array
   public static void testSqrt(int testcase){
@@ -67,7 +82,6 @@ public class recursion{
     if(testcase < input.length){
       double in = input[testcase];
       try{
-
         double ans = r.sqrt(in,.00001);
         double correct = Math.sqrt(in);
         if(closeEnough(ans,correct)){
@@ -91,53 +105,65 @@ public class recursion{
 
   public static double sqrt(double num, double threshold){
     if (num == 0){
-      return 0;}
-      return squareRoot(num,1,threshold);
+      return 0;
     }
+    return squareRoot(num,1,threshold);
+  }
 
-    public static double sqrt(double num){ //overrides previous function
-      if (num == 0){
-        return 0;}
-        return squareRoot(num,1,0.00001); //threshold from documentation on website
+  public static double sqrt(double num){ //overrides previous function
+    if (num == 0){
+      return 0;
+    }
+    return squareRoot(num,1,0.00001); //threshold from documentation on website
+  }
+
+  public static double squareRoot(double num, double guess, double threshold){ //helper method
+    if(num == 0){ //technically don't need this if in the other methods
+    return 0;}
+    if((Math.abs((guess*guess) - num) <= num * threshold)){
+      return guess;}
+      else{
+        double modified = (((num/guess) + guess)/2);
+        return squareRoot(num,modified,threshold);}
       }
 
-      public static double squareRoot(double num, double guess, double threshold){ //helper method
-        if(num == 0){ //technically don't need this if in the other methods
-        return 0;}
-        if((Math.abs((num-guess*guess) / num) <= threshold)){
-          return guess;}
+      public static int fib(int num){
+        if (num < 0){
+          throw new IllegalArgumentException("Num entered must be positive."); // this is a precondition
+        }
+        return fibLinear(num, 1, 1);
+      }
+
+      public static int fibLinear(int num, int previous, int twoBefore){
+        if (num == 0){
+          return 0;
+        }
+        if (num < 3){
+          return twoBefore;
+        }
+        else{
+          return fibLinear(num-1, twoBefore, previous+twoBefore);
+        }
+      }
+
+        public static ArrayList<Integer> makeAllSums(int nums){
+          return allSums(nums,0);
+        }
+
+        public static ArrayList<Integer> allSums(int nums, int current) {
+          ArrayList<Integer> sums = new ArrayList<Integer>();
+          if(nums == 0){
+            sums.add(0);
+          }
+          else if (nums == 1){
+            sums.add(current);
+            sums.add(current + 1);
+          }
           else{
-            double Newguess=(((num/guess) + guess)/2);
-            return squareRoot(num,guess,threshold);}}
+            sums.addAll(allSums(nums - 1, current + nums));
+            sums.addAll(allSums(nums - 1, current));
+        }
+        return sums;
+      }
 
-            public static int fib(int num){
-              if (num < 0){
-                throw new IllegalArgumentException("Num entered must be positive."); // this is a precondition
-              }
-              if (num < 2){
-                return 1;
-              }
-              return fibLinear(num, 1, 1);
-            }
-
-            public static int fibLinear(int num, int previous, int previouser){
-              if (n == 2){
-                return previous+previouser;}
-                return fibLinear(num-1, previous+previouser, previous);
-              }
-
-              public static ArrayList<Integer> makeAllSums(int nums){
-                ArrayList<Integer> sums = new ArrayList<Integer>();
-                return allSums(nums,0,sums); //need to determine params
-              }
-
-              public static void allSums(int nums, int current, ArrayList<Integer> all) {
-                if (n <= 0) {
-                  all.add(current);
-                  return all;
-                }
-                allSums(n - 1, current + n, all);
-                allSums(n - 1, current, all);
-              }
-
-            }
+      }
